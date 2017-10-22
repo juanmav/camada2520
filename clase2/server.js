@@ -2,12 +2,28 @@ const express = require('express');
 const app = express();
 let userList = require('./data');
 const bodyParser = require('body-parser');
+const middleware = require('./middleware');
 
 app.use(bodyParser.json());
+//app.use(middleware);
 
 // Punto de entrada
 app.get('/', function (request, response) {
-    response.json({ message: 'Hola express!'});
+    response.json(
+        {
+            name: 'Mi listado de usuarios',
+            endpoints: [
+                {
+                    name: 'Usuarios endpoint',
+                    url: './users'
+                },
+                {
+                    name: 'Items endpoint',
+                    url: './items'
+                }
+            ]
+        }
+    );
 });
 
 // Listado de usuarios
@@ -74,9 +90,6 @@ app.put('/users/:userId', function (req, res) {
     } else {
         res.status(404).json({ message: 'el usuario no existe!'})
     }
-
-
-
 });
 
 app.listen(4000);

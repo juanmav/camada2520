@@ -1,0 +1,23 @@
+{
+  "name": "clase2bis",
+  "version": "1.0.0",
+  "description": "api restfull con express clase de un sabado",
+  "main": "server.js",
+  "scripts": {
+    "dev": "echo 'corro dev'",
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "js",
+    "nodejs",
+    "coderhouse"
+  ],
+  "author": "camada2520",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.1"
+  }
+}
