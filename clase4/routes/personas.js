@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const Persona = require('../models/Persona');
+const personasPostsRouter = require('./personasposts');
 
 // Configurar.
+
+router.use('/:personaId/posts', personasPostsRouter);
 
 // get en /personas/
 // LIST
