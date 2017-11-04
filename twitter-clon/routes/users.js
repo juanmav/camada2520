@@ -19,18 +19,43 @@ router.get('/', function (req, res) {
 });
 
 router.get('/:userId', function (req, res) {
-    // Verificar si es admin o si es la persona
+    let user = req.user;
+    let userId = req.params.userId;
+
+    if (user._id == userId || user.isAdmin){
+        User
+            .findById(userId)
+            .then( u => res.status(200).json(u))
+    } else {
+        res.status(403).json({ message: 'No tenes permisos'});
+    }
+
 });
+
 router.put('/:userId', function (req, res) {
-    // Borrar el usuario chqueando que exista.
-    // Verificar si es admin o si es la persona
-    // modificar.
+    let user = req.user;
+    let data = req.body;
+    let userId = req.params.userId;
+
+    if (user._id == userId || user.isAdmin){
+        User
+            .findOneAndUpdate({ _id: userId }, data)
+            .then( u => res.status(200).json(u))
+    } else {
+        res.status(403).json({ message: 'No tenes permisos'});
+    }
 
 });
 
 router.delete('/:userId', function (req, res) {
-    // Verificar si es admin
-    // Borrar el usuario chqueando que exista.
+    let user = req.user;
+    let userId = req.params.userId;
+
+    if (user.isAdmin){
+        User.remove({ _id: userId })
+    } else {
+        res.status(403).json({ message: 'No tenes permisos'});
+    }
 });
 
 module.exports = router;
