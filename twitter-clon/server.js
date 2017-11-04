@@ -14,10 +14,12 @@ const registerRouter = require('./routes/register');
 const loginRouter =require('./routes/login');
 const tweetsRouter = require('./routes/tweets');
 const authValidator = require('./routes/middlewares/authvalidator');
+const usersRouter = require('./routes/users');
 
 app.use('/register', registerRouter);
 app.use('/login', loginRouter);
 app.use('/tweets', authValidator, tweetsRouter);
+app.use('/users', authValidator, usersRouter);
 
 app.listen(4000);
 
