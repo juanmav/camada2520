@@ -1,5 +1,6 @@
 import React from 'react';
 import config from '../config';
+import { Link } from 'react-router-dom';
 
 class Login extends React.Component {
 
@@ -56,6 +57,7 @@ class Login extends React.Component {
                 email: <input onChange={this.handleEmail} type='text'/><br/>
                 password: <input onChange={this.handlePassword} type='password'/><br/>
                 <button onClick={this.login}>login!</button>
+                <Link to={'/register'}>Registrarme</Link>
             </div>
         )
     }

@@ -27,10 +27,16 @@ class TweetList extends React.Component {
         window.location.href = '/tweet/add';
     };
 
+    logout = () => {
+        localStorage.removeItem('token');
+        window.location.href = '/';
+    };
+
     render(){
         console.log(this.state);
         return(
             <div>
+                <button onClick={this.logout}> Salir!</button>
                 <button onClick={this.goToCreate}> Crear Tweet </button>
                 <hr/>
                 {
