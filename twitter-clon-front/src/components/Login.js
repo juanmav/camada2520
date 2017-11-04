@@ -1,4 +1,5 @@
 import React from 'react';
+import config from '../config';
 
 class Login extends React.Component {
 
@@ -12,7 +13,7 @@ class Login extends React.Component {
 
     login = () => {
         console.log(this.state);
-        fetch('http://localhost:4000/login', {
+        fetch(config.apiUrl + 'login', {
             headers: {
                 "Content-Type": "application/json"
             },

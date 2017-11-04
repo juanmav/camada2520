@@ -1,5 +1,6 @@
 import React from 'react';
 import TweetItem from './TweeItem';
+import config from '../../config';
 
 class TweetList extends React.Component {
 
@@ -11,7 +12,7 @@ class TweetList extends React.Component {
     }
 
     componentDidMount(){
-        fetch('http://localhost:4000/tweets',{
+        fetch(config.apiUrl + 'tweets',{
             headers :{
                 "Content-Type" : "application/json",
                 "x-access-token": localStorage.getItem('token')
