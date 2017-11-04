@@ -30,6 +30,11 @@ class App extends Component {
                                 <div>
                                     <Route path={'/'} exact={true} component={TweetList}/>
                                     <Route path={'/tweet/add'} exact={true} component={TweetForm}/>
+                                    <Route
+                                        path={'/tweet/edit/:tweetId'}
+                                        exact={true}
+                                        render={({match}) => <TweetForm tweetId={match.params.tweetId}/>}
+                                    />
                                 </div>
                             </Router>
                             :
