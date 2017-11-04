@@ -14,7 +14,7 @@ router.post('/', function (req, res) {
                 let json = user.toJSON();
                 delete json.password;
                 let token = jwt.sign(json, 'mysecretolargo');
-                res.status(200).json({token});
+                res.status(201).json({token});
             } else {
                 res.status(401).json({ message: 'credenciales invalidas'});
             }

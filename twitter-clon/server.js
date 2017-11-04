@@ -2,12 +2,13 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParse = require('body-parser');
+const cors = require('cors');
 
 // configuracion.
 mongoose.connect('mongodb://127.0.0.1:27017/twitterclon');
 app.use(bodyParse.json());
 app.use(bodyParse.urlencoded({extended : false}));
-
+app.use(cors());
 
 // Routes
 const registerRouter = require('./routes/register');
