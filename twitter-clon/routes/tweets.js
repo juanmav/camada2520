@@ -45,11 +45,33 @@ router.post('/', function (req, res) {
 
 // PUT
 // TOmar el userId de req.user._id verificar que sea el autor
-
 // TODO tarea para el hogar!
 
-// DELETE
-// TOmar el userId de req.user._id verificar que sea el autor;
+router.put('/:tweetId', function (req, res) {
+    let data = req.body;
+    let user = req.user;
+    let tweetId = req.params.tweetId;
+
+    Tweet
+        .findById(tweetId)
+        .then( t => {
+            if (t){
+                if (t.author == user._id || user.isAdmin){
+                        Tweet
+                            .findOneAndUpdate({_id : tweetId}, data)
+                            .then(r => res.status(202).json(r))
+                            .catch(err => res.status(503).json(err));
+                } else {
+                    res.status(403).json({message : 'No tenes permisos'});
+                }
+            } else{
+               res.status(404).json({message : 'No existe el tweet'});
+            }
+        })
+        .catch( err => req.status(503).json(err));
+
+});
+
 
 router.delete('/:tweetId', function (req, res) {
     let tweetId = req.params.tweetId;
